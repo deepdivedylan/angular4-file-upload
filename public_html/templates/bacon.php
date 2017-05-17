@@ -12,7 +12,7 @@
 		<!-- button -->
 		<br>
 		<div ng-controller="myController">
-			<input class="btn btn-primary" value="Get Bacon" ng-click="getBacon()" > {{num}}
+			<input class="btn btn-primary" value="Get Bacon" click="getBacon()" > {{num}}
 			<br>
 		</div>
 
