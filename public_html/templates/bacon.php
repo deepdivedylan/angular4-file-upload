@@ -8,6 +8,14 @@
 			</div>
 			<input type="number" id="baconNumParagraphs" name="baconNumParagraphs" class="form-control" required min="0" max="9" step="1" [(ngModel)]="numParagraphs" #baconNumParagraphs="ngModel" (change)="getBacon();" />
 		</div>
+
+		<!-- button -->
+		<br>
+		<div ng-controller="myController">
+			<input class="btn btn-primary" value="Get Bacon" (click)="getBacon()" > {{num}}
+			<br>
+		</div>
+
 		<div [hidden]="baconNumParagraphs.valid || baconNumParagraphs.pristine" class="alert alert-danger" role="alert">
 			<p *ngIf="baconNumParagraphs.errors?.max">Number of paragraphs cannot be more than 10.</p>
 			<p *ngIf="baconNumParagraphs.errors?.min">Number of paragraphs is cannot be negative.</p>
