@@ -10,13 +10,14 @@ import "rxjs/add/observable/from";
 
 export class ImageComponent implements OnInit {
 	public uploader: FileUploader = new FileUploader({
+		itemAlias: "dog",
 		url: "./api/image/",
 		headers: [{name: "X-XSRF-TOKEN", value: Cookie.get("XSRF-TOKEN")}],
 		additionalParameter: {}
 	});
 
 	protected cloudinaryPublicId : string = null;
-	protected cloudinaryPublicIdObservable : Observable<string> = null;
+	protected cloudinaryPublicIdObservable : Observable<string> = new Observable<string>();
 
 	ngOnInit(): void {
 		this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
