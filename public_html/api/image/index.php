@@ -20,10 +20,6 @@ try {
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 	if($method === "POST") {
 		verifyXsrf();
-		//verify user logged in
-		if(empty($_SESSION["profile"]) === true){
-			throw(new \InvalidArgumentException("You are not allowed to post images unless you are logged in", 401));
-		}
 		$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/barkparkz.ini");
 		//cloudinary api stuff
 		$config = readConfig("/etc/apache2/capstone-mysql/barkparkz.ini");
