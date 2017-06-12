@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {FileUploader} from "ng2-file-upload";
 import {Cookie} from "ng2-cookies";
+import {Observable} from "rxjs";
+import "rxjs/add/observable/from";
 
 @Component({
 	templateUrl: "./templates/image.php"
@@ -14,11 +16,13 @@ export class ImageComponent implements OnInit {
 	});
 
 	protected cloudinaryPublicId : string = null;
+	protected cloudinaryPublicIdObservable : Observable<string> = null;
 
-	getCloudinaryId(): void {
+	ngOnInit(): void {
 		this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
 			let reply = JSON.parse(response);
 			this.cloudinaryPublicId = reply.data;
+			this.cloudinaryPublicIdObservable = Observable.from(this.cloudinaryPublicId);
 			console.log(this.cloudinaryPublicId);
 			// return Promise.resolve(this.cloudinaryPublicId);
 		};
@@ -26,10 +30,6 @@ export class ImageComponent implements OnInit {
 
 	uploadImage() :  void {
 		this.uploader.uploadAll();
-	}
-
-	ngOnInit() : void {
-		this.getCloudinaryId();
 	}
 
 }
