@@ -22,10 +22,8 @@ export class ImageComponent implements OnInit {
 	ngOnInit(): void {
 		this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
 			let reply = JSON.parse(response);
-			// this.cloudinaryPublicId = reply.data;
+			this.cloudinaryPublicId = reply.data;
 			this.cloudinaryPublicIdObservable = Observable.from(this.cloudinaryPublicId);
-			// console.log(this.cloudinaryPublicId);
-			// return Promise.resolve(this.cloudinaryPublicId);
 		};
 	}
 
